@@ -8,6 +8,8 @@ module FaradayMiddleware
 
       def parse(body)
         ::MultiJson.load(body, @options)
+      rescue => e
+        raise Faraday::Error::ParsingError.new e
       end
     end
 
