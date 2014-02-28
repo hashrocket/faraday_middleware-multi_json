@@ -7,7 +7,7 @@ module FaradayMiddleware
       dependency 'multi_json'
 
       def parse(body)
-        ::MultiJson.load(body, @options) rescue body
+        ::MultiJson.load(body, @options)
       end
     end
 
