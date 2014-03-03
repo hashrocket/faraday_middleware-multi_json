@@ -7,9 +7,10 @@ module FaradayMiddleware
       dependency 'multi_json'
 
       def parse(body)
+        return "" if body.strip.empty?
         ::MultiJson.load(body, @options)
-      rescue MultiJson::LoadError => exception
-        raise Faraday::Error::ParsingError.new(exception, exception.data)
+      rescue => exception
+        raise Faraday::Error::ParsingError.new(exception, body)
       end
     end
 
